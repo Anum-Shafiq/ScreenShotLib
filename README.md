@@ -36,7 +36,7 @@ private val screenShotController by lazy { ScreenShotController(this) }
 
 //Register observer
 override fun onResume() {
-screenShotController.registerObserver(this.window)
+	screenShotController.registerObserver(this.window)
     super.onResume()
     }
 ```
