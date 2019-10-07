@@ -22,7 +22,7 @@ Add ScreenShotLib to your app module's `build.gradle` file:
 
 ```gradle
 dependencies {
-	        implementation 'com.github.Anum-shafiq:ScreenShotLib:Tag'
+	implementation 'com.github.Anum-shafiq:ScreenShotLib:Tag'
 	}
 ```
 
@@ -31,27 +31,27 @@ dependencies {
 Firstly, initiate the screenShotController variable then register observer in the application and observe it either from fragment or activity where required
 
 ```kotlin
-  //ScreenShotController Class is the base class for the library
-  private val screenShotController by lazy { ScreenShotController(this) }
+//ScreenShotController Class is the base class for the library
+private val screenShotController by lazy { ScreenShotController(this) }
 
-  //Register and unregister observer using following code:
-  override fun onResume() {
-        screenShotController.registerObserver(this.window)
+//Register and unregister observer using following code:
+override fun onResume() {
+	screenShotController.registerObserver(this.window)
         super.onResume()
     }
 
-    override fun onStop() {
-        screenShotController.unregisterObserver()
+override fun onStop() {
+	screenShotController.unregisterObserver()
         super.onStop()
-    }
+	}
 ```
   
   Add following code to observe the screenShot captured event
   
 ```Kotlin
-  //observerScreenShot is the LiveData that is being changed on Screen Shot capture
-  screenShotController.observerScreenShot().observe(this, Observer {
-            it?.let { Toast.makeText(this, "You can do notifying here", Toast.LENGTH_LONG).show() }
+//observerScreenShot is the LiveData that is being changed on Screen Shot capture
+screenShotController.observerScreenShot().observe(this, Observer {
+	it?.let { Toast.makeText(this, "You can do notifying here", Toast.LENGTH_LONG).show() }
         })
 ```
 
