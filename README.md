@@ -50,7 +50,7 @@ screenShotController.observerScreenShot().observe(this, Observer {
 	})
 ```
 
-Finally, don't forget to unregister the oberver using the code provided:
+Finally, don't forget to unregister the oberver using the code provided
 
 ```kotlin
 //Unregister observer 
