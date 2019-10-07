@@ -11,7 +11,7 @@ Firstly Add Jitpack to your repositories.
 
 ```gradle
 allprojects {
-    repositories {
+	repositories {
         ...
         maven { url 'https://jitpack.io' }
     }
@@ -28,31 +28,36 @@ dependencies {
 
 # Implementation
 
-Firstly, initiate the screenShotController variable then register observer in the application and observe it either from fragment or activity where required
+Firstly, initiate the screenShotController variable then register observer in the application either from fragment or activity as follow:
 
 ```kotlin
 //ScreenShotController Class is the base class for the library
 private val screenShotController by lazy { ScreenShotController(this) }
 
-//Register and unregister observer using following code:
+//Register observer
 override fun onResume() {
 	screenShotController.registerObserver(this.window)
-        super.onResume()
+    super.onResume()
     }
-
-override fun onStop() {
-	screenShotController.unregisterObserver()
-        super.onStop()
-	}
 ```
   
-  Add following code to observe the screenShot captured event
+Add following code to observe the screenShot captured event wherever required
   
-```Kotlin
+```kotlin
 //observerScreenShot is the LiveData that is being changed on Screen Shot capture
 screenShotController.observerScreenShot().observe(this, Observer {
 	it?.let { Toast.makeText(this, "You can do notifying here", Toast.LENGTH_LONG).show() }
-        })
+	})
+```
+
+Finally, don't forget to unregister the oberver using the code provided:
+
+```kotlin
+//Unregister observer 
+override fun onStop() {
+	screenShotController.unregisterObserver()
+    super.onStop()
+	}
 ```
 
 License
